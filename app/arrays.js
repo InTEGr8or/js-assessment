@@ -4,11 +4,10 @@ exports.arraysAnswers = {
 
   indexOf : function(arr, item) {
       //TODO: Handle multiple true results.
-      var result = -1;
       arr.forEach(function (value, index) {
-          if (value === item) result = index;
+          if (value === item) return index;
       })
-      return result;
+      return -1;
   },
 
   sum : function(arr) {
