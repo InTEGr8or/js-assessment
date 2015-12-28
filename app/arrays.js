@@ -4,22 +4,34 @@ exports.arraysAnswers = {
 
   indexOf : function(arr, item) {
       //TODO: Handle multiple true results.
+      var result = -1;
       arr.forEach(function (value, index) {
-          if (value === item) return index;
+          if (value === item) {
+              result = index;
+              return;
+          }
       })
-      return -1;
+      return result;
   },
 
-  sum : function(arr) {
-
+  sum: function (arr) {
+      // http://stackoverflow.com/questions/1230233/how-to-find-the-sum-of-an-array-of-numbers
+      // http://stackoverflow.com/questions/16057672/sum-values-from-an-array-in-javascript
+      return arr.reduce(function(a, b){ return a + b });
   },
 
-  remove : function(arr, item) {
-
+  remove: function (arr, item) {
+      for (var i = arr.length - 1; i >= 0; i--){
+          if(arr[i] === item) arr.splice(i, 1);   
+      }
+      return arr;
   },
 
   removeWithoutCopy : function(arr, item) {
-
+      for (var i = arr.length - 1; i >= 0; i--){
+          if(arr[i] === item) arr.splice(i, 1);   
+      }
+      return arr;
   },
 
   append : function(arr, item) {
