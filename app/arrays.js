@@ -29,17 +29,19 @@ exports.arraysAnswers = {
 
   removeWithoutCopy : function(arr, item) {
       for (var i = arr.length - 1; i >= 0; i--){
-          if(arr[i] === item) arr.splice(i, 1);   
+          if(arr[i] === item && i > -1) arr.splice(i, 1);   
       }
       return arr;
   },
 
   append : function(arr, item) {
-
+      arr.push(item);
+      return arr;
   },
 
   truncate : function(arr) {
-
+      arr.splice(arr.length - 1, 1);
+      return arr;
   },
 
   prepend : function(arr, item) {
