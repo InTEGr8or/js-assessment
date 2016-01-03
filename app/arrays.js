@@ -45,15 +45,20 @@ exports.arraysAnswers = {
   },
 
   prepend : function(arr, item) {
-
+    //   arr.splice(0, 0, item);
+      arr.unshift(item);
+      return arr;
   },
 
   curtail : function(arr) {
-
+      //arr.splice(0, 1);
+      arr.shift();
+      return arr;
   },
 
   concat : function(arr1, arr2) {
-
+      var result = arr1 + arr2;
+      return arr1.concat(arr2); 
   },
 
   insert : function(arr, item, index) {
