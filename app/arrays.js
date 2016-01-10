@@ -11,7 +11,7 @@ exports.arraysAnswers = {
               return;
           }
       })
-      return result;
+      return arr.indexOf(item);
   },
 
   sum: function (arr) {
@@ -57,27 +57,55 @@ exports.arraysAnswers = {
   },
 
   concat : function(arr1, arr2) {
-      var result = arr1 + arr2;
       return arr1.concat(arr2); 
   },
 
-  insert : function(arr, item, index) {
-
+  insert: function (arr, item, index) {
+      arr.splice(index, 0, item);
+      return arr;
   },
 
   count : function(arr, item) {
-
+      var result = arr.filter(function (val) { return val === item; });
+      return result.length;
   },
 
-  duplicates : function(arr) {
-
+  duplicates: function (arr) {
+      // Didn't use these, but lots of info in them
+      // http://stackoverflow.com/questions/17968987/javascript-arrays-find-duplicates
+      // http://stackoverflow.com/questions/840781/easiest-way-to-find-duplicate-values-in-a-javascript-array
+      var dupes = [];
+      for (var i = 0; i < 10; i++){
+          if (arr.filter(
+              function (item) { 
+                    return item === i;
+              }
+              ).length > 1) {
+              if (dupes.filter(
+                  function (dupe) { 
+                      return dupe === i;
+                  }
+                ).length === 0
+            ) dupes.push(i);
+          }
+      }
+      return dupes;
   },
 
   square : function(arr) {
-
+      arr.forEach(function (item, index) {
+          arr[index] = item * item;
+      });
+      return arr;
   },
 
   findAllOccurrences : function(arr, target) {
-
+      var occurances = [];
+      var index = arr.indexOf(target);
+      while (index !== -1) {
+          occurances.push(index);
+          index = arr.indexOf(target, index + 1);
+      } 
+      return occurances;
   }
 };
