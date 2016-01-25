@@ -14,6 +14,25 @@ exports.asyncAnswers = {
   },
 
   manipulateRemoteData : function(url) {
-
+      return new Promise(function (resolve, reject) {
+          var req = new XMLHttpRequest();
+          req.open("GET", url);
+          req.onload = function () {
+              if (req.status == 200) {
+                  var returnObj = JSON.parse(req.response);
+                  if (returnObj.hasOwnProperty("people") && Array.isArray(returnObj.people)) {
+                      resolve(returnObj.people.map(function(person){ return person.name;}).sort());
+                  } else {
+                      reject(Error("Did not return proper JSON array."))
+                  }
+              } else {
+                  reject(Error("HTTP error:" + req.status));
+              }
+          };
+          req.onerror = function () {
+              reject(Error("Network Error"));
+          };
+          req.send();
+      })
   }
 };
