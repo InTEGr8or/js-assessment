@@ -7,9 +7,10 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.asyncAnswers = {
   async : function(value) {
-      value.then = function (val) { return true; }
-      value.done = function(doneVal) {return true;}
-      return value;
+      return new Promise(function (resolve, reject) {
+          if (value) resolve(value);
+          reject(Error("Somethine went wrong"));
+      })
   },
 
   manipulateRemoteData : function(url) {
